@@ -31,8 +31,7 @@ module Whois
       end
 
       tokenizer :scan_disclaimer do
-        if @input.match?(/% Copyright \(c\) *\d{4} by DENIC\n/)
-          @input.scan_until(/% Terms and Conditions of Use\n/)
+        if @input.match?(/^% Restricted rights.\n/)
           lines = []
           while @input.match?(/%/) && @input.scan(/%(.*)\n/)
             lines << @input[1].strip unless @input[1].strip == ""
